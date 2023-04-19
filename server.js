@@ -3,7 +3,7 @@ const path = require('path');
 const api = require('./routes/index.js');
 // const { cLog } = require('./middleware/clog');
 const exp = require('constants');
-//const PORT = 5001;
+const PORT = 5000;
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-app.listen(process.env.PORT, () =>
+app.listen(process.env.PORT || PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
 
