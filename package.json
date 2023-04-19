@@ -1,7 +1,7 @@
 {
   "name": "express-note-taker",
   "version": "1.0.0",
-  "description": "AS A small business owner I WANT to be able to write and save notes SO THAT I can organize my thoughts and keep track of tasks I need to complete",
+  "description": "To allow myself to take notes of the day while programming. Allowing me to look back and reflect on what I could have done better. with this application I was able to implement Modular Routing, GET, POST, DELETE requests, Express, and heroku deployment. ",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
