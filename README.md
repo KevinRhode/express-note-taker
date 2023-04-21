@@ -48,6 +48,7 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 ## Usage
  
   [Link to Deployed Application](https://express-note-taker-kevinrhode.herokuapp.com/)  
+  [GitHub Repo](https://github.com/KevinRhode/express-note-taker)
 
 Landing Page:
 ![Screenshot of the application main page](./assets/images/express-note-taker-kevinrhode.herokuapp.com_.png)
