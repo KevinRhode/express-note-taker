@@ -12,9 +12,9 @@ notes.post('/notes', (req, res) => {
   if (req.body) {
     const newNote = {
       title,
-      text,
-      
+      text      
     } = req.body;
+    //give note an id to handle show note method
     newNote.id = uuid();
     readAndAppend(newNote, './db/db.json');
     res.json(`Note added successfully 🚀`);
@@ -29,11 +29,12 @@ notes.delete('/notes/:id', (req, res) => {
     readFromFile('./db/db.json')
     .then((data) => {
       // console.info(data);
+      // to write json and not promise
       const list = JSON.parse(data);
-      console.info(list);
+      //console.info(list);
       for (let i = 0; i < list.length; i++) {
         if (list[i].id === req.params.id) {
-          //delete this data
+          //delete this data from the array
           list.splice(i,1);          
         }        
       }
@@ -41,6 +42,7 @@ notes.delete('/notes/:id', (req, res) => {
       return list;
     })
     .then((data)=>{
+      //to write data and not promise to file
       const write = data;
       writeToFile('./db/db.json', write);
     });   
