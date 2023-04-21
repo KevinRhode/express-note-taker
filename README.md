@@ -58,7 +58,6 @@ What you should see when Get started is Pressed:
 ## Credits
 
 [Starter Code for Deployment](https://github.com/coding-boot-camp/miniature-eureka)  
-[Install Guide MySQL - Will Nollert](https://github.com/Will-Nollert?tab=repositories)
 
 ## License
 
