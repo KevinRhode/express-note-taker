@@ -36,11 +36,6 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 
 ## Installation
 
-Installation Guide MySQL  
-https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/ 
- 
-[PC users: if you get the error “command not found” please refer to the SQL documentation on customizing the PATH](https://dev.mysql.com/doc/mysql-windows-excerpt/5.7/en/mysql-installation-windows-path.html)
-
   Local -
   Clone - git clone git@github.com:KevinRhode/svg-logo-gen.git  
   Node.js - Verison 16.18.0  
