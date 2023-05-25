@@ -1,35 +1,60 @@
-const express = require('express');
 const path = require('path');
-const api = require('./routes/index.js');
-// const { cLog } = require('./middleware/clog');
-//disabled for heroku
-const exp = require('constants');
-const PORT = 5000;
+const express = require('express');
+// Import express-session
+const session = require('express-session');
+const exphbs = require('express-handlebars');
+const routes = require('./controllers');
+const sequelize = require('./config/connection');
+const helpers = require('./utils/helpers');
+
+
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
+const PORT = process.env.PORT || 3001;
+const hbs = exphbs.create({ helpers });
 
-// Import custom middleware, "cLog"
-// app.use(cLog);
-//disabled for heroku
+const sess = {
+  secret: 'Super secret secret',
+  cookie: {
+    maxAge: 300000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'strict',
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
 
-// Middleware for parsing JSON and urlencoded form data
+app.use(session(sess));
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
-//you router for modular routes
-app.use('/',api);
+app.use(express.static(path.join(__dirname, 'public')));
 
-// GET Route for index
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-);
+app.use(routes);
 
-// GET Route for notes page
-app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/notes.html'))
-);
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT} 🚀`));
+});
 
-app.listen(process.env.PORT || PORT, () =>
-  console.log(`App listening at http://localhost:${PORT} 🚀`)
-);
+// // GET Route for index
+// app.get('/', (req, res) =>
+//   res.sendFile(path.join(__dirname, '/public/index.html'))
+// );
+
+// // GET Route for notes page
+// app.get('/notes', (req, res) =>
+//   res.sendFile(path.join(__dirname, '/public/notes.html'))
+// );
+
+// app.listen(process.env.PORT || PORT, () =>
+//   console.log(`App listening at http://localhost:${PORT} 🚀`)
+// );
 
