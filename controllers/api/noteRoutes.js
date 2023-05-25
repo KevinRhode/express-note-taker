@@ -3,16 +3,37 @@ const {Note} = require('../../models')
 // const { readFromFile, readAndAppend,writeToFile} = require('../../helpers/fsUtils');
 // const uuid = require('../../helpers/uuid');
 
-// GET Route for retrieving all the notes
-router.get('/', async (req, res) => {  
+
+router.get('/view',async (req,res)=>{
+
+try {
   const noteData = await Note.findAll();
 
   const notes = noteData.map(note => note.get({plain:true}));
 
   res.render('notes', {
     notes,
-    logged_in: req.session.logged_in,
+    logged_in: req.session.logged_in
   });
+    
+} catch (error) {
+  
+}
+
+
+});
+
+// GET Route for retrieving all the notes
+router.get('/', async (req, res) => {  
+  try{
+  const noteData = await Note.findAll();
+
+  const notes = noteData.map(note => note.get({plain:true}));
+ 
+  res.json(notes);
+} catch(err) {
+  res.error('Error in getting Note');
+}
 
 });
 
