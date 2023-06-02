@@ -38,20 +38,22 @@ router.get('/', async (req, res) => {
 });
 
 // POST Route 
-router.post('/', (req, res) => {  
-  if (req.body) {
-    const newNote = {
-      title,
-      text      
-    } = req.body;
-    //give note an id to handle show note method
-    // newNote.id = uuid();\
-    newNote.id = 0;
-    // readAndAppend(newNote, './db/db.json');
-    res.json(`Note added successfully 🚀`);
-  } else {
-    res.error('Error in adding Note');
+router.post('/', async (req, res) => {  
+
+  try {
+    if (req.body) {
+      const newNoteData = await Note.create({...req.body});
+      const newNote = newNoteData.get({plain:true});
+      if (newNote) {
+        res.json(`Note added successfully 🚀`);
+      }
+    } else {
+      res.error('Error in adding Note');
+    }
+  } catch (error) {
+    res.status(500);
   }
+  
 });
 
 // POST Route in Delete

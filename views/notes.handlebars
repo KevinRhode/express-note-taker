@@ -11,8 +11,10 @@
         <div class="col-4 list-container">
           <div class="card">
             <ul class="list-group">
-              <li class="list-group-item" data-note="{&quot;title&quot;:&quot;t1&quot;,&quot;text&quot;:&quot;text&quot;,&quot;id&quot;:&quot;7c463&quot;}"><span class="list-item-title">t1</span><i class="fas fa-trash-alt float-right text-danger delete-note"></i></li>
-            </ul><li class="list-group-item" data-note="{"title":"t1","text":"text","id":"7c463"}"><span class="list-item-title">t1</span><i class="fas fa-trash-alt float-right text-danger delete-note"></i></li>
+              {{#each notes as |note|}}
+               <li class="list-group-item" data-note="{{stringify note}}"><span class="list-item-title">{{note.title}}</span><i class="fas fa-trash-alt float-right text-danger delete-note"></i></li>
+              {{/each}}
+            </ul>
           </div>
         </div>
         <div class="col-8">

@@ -1,4 +1,8 @@
 module.exports = {
+  stringify:(data)=>{
+    //json.stringfy data
+    return JSON.stringify(data);
+  },
   format_date: (date) => {
     // Format date as MM/DD/YYYY
     return date.toLocaleDateString();
