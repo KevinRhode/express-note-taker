@@ -58,7 +58,7 @@ What you should see when Get started is Pressed:
 
 ## Credits
 
-[Starter Code for Deployment](https://github.com/coding-boot-camp/miniature-eureka)  
+[Starter Code for Development](https://github.com/coding-boot-camp/miniature-eureka)  
 
 ## License
 
